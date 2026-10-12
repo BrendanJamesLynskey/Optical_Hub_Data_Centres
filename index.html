@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optical Technology for Data Centres &mdash; Optical Technology</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&family=Geist+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #1c1815; --bg-card: #231e1a; --bg-code: #2b2520;
+            --text-primary: #efe8dc; --text-secondary: #a2978b;
+            --accent: #aabd59; --accent-dim: #aabd5944; --accent-glow: #aabd5933;
+            --border: #3a322b;
+            --font-display: 'Bricolage Grotesque', sans-serif;
+            --font-mono: 'Geist Mono', 'Geist Mono', monospace;
+            --font-body: 'Instrument Sans', sans-serif;
+            --max-width: 960px;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--bg-primary); color: var(--text-primary);
+               font-family: var(--font-body); font-size: 17px; line-height: 1.7;
+               overflow-x: hidden; }
+        .hero { min-height: 60vh; display: flex; flex-direction: column;
+                justify-content: center; align-items: center;
+                padding: 4rem 1.5rem 3rem; text-align: center; position: relative; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 50%;
+                        transform: translateX(-50%); width: 600px; height: 600px;
+                        background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+                        pointer-events: none; z-index: 0; }
+        .hero > * { position: relative; z-index: 1; }
+        .series-label { font-family: var(--font-mono); font-size: 0.85rem;
+                        color: var(--accent); letter-spacing: 0.15em;
+                        text-transform: uppercase; margin-bottom: 1rem; }
+        .hero h1 { font-family: var(--font-display);
+                   font-size: clamp(2rem, 5vw, 3rem); font-weight: 700;
+                   color: var(--text-primary); line-height: 1.2; margin-bottom: 1rem; }
+        .hero h1 .accent { color: var(--accent); }
+        .hero .subtitle { font-size: 1.1rem; color: var(--text-secondary);
+                          max-width: 720px; margin-bottom: 1.5rem; }
+        .tags { display: flex; flex-wrap: wrap; gap: 0.5rem;
+                justify-content: center; margin-bottom: 1rem; }
+        .tag { font-family: var(--font-mono); font-size: 0.75rem;
+               padding: 0.25rem 0.75rem; border-radius: 999px;
+               border: 1px solid var(--accent); color: var(--accent);
+               background: var(--accent-dim); white-space: nowrap; }
+        .container { max-width: var(--max-width); margin: 0 auto; padding: 2rem 1.5rem; }
+        h2 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700;
+             color: var(--accent); margin: 1rem 0 1.25rem; }
+        .deck-list { display: flex; flex-direction: column; gap: 0.6rem;
+                     list-style: none; padding: 0; counter-reset: deck; }
+        .deck-card { display: flex; gap: 1rem; padding: 1rem 1.25rem;
+                     background: var(--bg-card); border: 1px solid var(--border);
+                     border-left: 3px solid var(--accent); border-radius: 6px;
+                     transition: border-color 0.15s; counter-increment: deck; }
+        .deck-card:hover { border-color: var(--accent); }
+        .deck-card.roadmap { border-left-color: #e3b174; }
+        .deck-card.roadmap:hover { border-color: #e3b174; }
+        .deck-card .num { font-family: var(--font-mono); font-size: 0.8rem;
+                          color: var(--accent); min-width: 2rem;
+                          padding-top: 0.15rem; }
+        .deck-card.roadmap .num { color: #e3b174; }
+        .deck-card .num::before { content: counter(deck, decimal-leading-zero); }
+        .deck-card .body { flex: 1; min-width: 0; }
+        .deck-card .deck-title { font-family: var(--font-display); font-size: 1.05rem;
+                                 font-weight: 600; color: var(--text-primary);
+                                 margin-bottom: 0.2rem; }
+        .deck-card a.deck-title { text-decoration: none; }
+        .deck-card a.deck-title:hover { color: var(--accent); }
+        .deck-card .desc { font-size: 0.92rem; color: var(--text-secondary); }
+        .deck-card .meta { font-family: var(--font-mono); font-size: 0.7rem;
+                           color: var(--text-secondary); margin-top: 0.4rem;
+                           display: flex; gap: 0.6rem; flex-wrap: wrap; }
+        .badge { display: inline-block; font-family: var(--font-mono);
+                 font-size: 0.65rem; padding: 0.1rem 0.5rem; border-radius: 999px;
+                 border: 1px solid var(--border); color: var(--text-secondary); }
+        .badge.live { border-color: var(--accent); color: var(--accent);
+                      background: var(--accent-dim); }
+        .badge.roadmap { border-color: #e3b174; color: #e3b174;
+                         background: rgba(227,177,116,0.08); }
+        .callout { background: var(--bg-card); border-left: 3px solid var(--accent);
+                   border-radius: 0 8px 8px 0; padding: 1rem 1.25rem; margin: 1.5rem 0; }
+        .callout p { margin-bottom: 0; color: var(--text-secondary); }
+        .callout p strong { color: var(--text-primary); }
+        .footer { text-align: center; padding: 3rem 1.5rem;
+                  color: var(--text-secondary); font-size: 0.85rem;
+                  border-top: 1px solid var(--border); max-width: var(--max-width);
+                  margin: 3rem auto 0; }
+        .footer a { color: var(--accent); text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+        @media (max-width: 640px) {
+            .hero h1 { font-size: 1.8rem; }
+            .deck-card { flex-direction: column; gap: 0.3rem; }
+        }
+            .deck-card.code { border-left-color: #97cdc6; }
+        .deck-card.code .num { color: #97cdc6; }
+        .deck-card.code .num::before { content: none; }
+        .badge.code { border-color: #97cdc6; color: #97cdc6; background: rgba(151,205,198,0.08); }
+    </style>
+
+<style>:root{font-synthesis-weight:none}        .deck-card.code { border-left-color: #97cdc6; }
+        .deck-card.code .num { color: #97cdc6; }
+        .deck-card.code .num::before { content: none; }
+        .badge.code { border-color: #97cdc6; color: #97cdc6; background: rgba(151,205,198,0.08); }
+        h3 { font-family: var(--font-display); font-size: 1.1rem; color: var(--accent); margin: 1.6rem 0 0.6rem; }
+        .gloss-intro { color: var(--text-secondary); margin-bottom: 0.5rem; }
+        dl.gloss dt { font-weight: 700; margin-top: 0.9rem; scroll-margin-top: 1rem; }
+        dl.gloss dt:target { color: var(--accent); }
+        dl.gloss dd { margin: 0.2rem 0 0 0; font-size: 0.92rem; color: var(--text-secondary); }
+        dl.gloss dd .where { display: block; margin-top: 0.25rem; font-size: 0.85rem; }
+        dl.gloss a, .gloss-intro a { color: var(--accent); }
+        .hero { overflow: hidden; }   /* the 600px glow must not widen the page on phones */
+    </style>
+</head>
+<body>
+<header class="hero">
+    <div class="series-label">Optical Technology &mdash; Optical Technology for Data Centres</div>
+    <h1>Optical Technology for <span class="accent">Data Centres</span></h1>
+    <p class="subtitle">How light carries data centre and AI cluster traffic, and what it costs: pluggable modules and the linear-drive optics that remove their DSPs, co-packaged optics on the switch package, optical circuit switches that replace packet spines, and the scale-up and scale-out networks of AI clusters. Device physics comes from Silicon Photonics Fundamentals and is linked, not repeated.</p>
+    <div class="tags"><span class="tag">Pluggables</span><span class="tag">LPO</span><span class="tag">Co-packaged optics</span><span class="tag">OCS</span><span class="tag">Fat-trees</span><span class="tag">AI clusters</span><span class="tag">4 decks live</span></div>
+</header>
+<main class="container">
+    <h2>Presentations in This Series</h2>
+    <ol class="deck-list">
+<li class="deck-card"><div class="num"></div><div class="body"><a class="deck-title" href="https://brendanjameslynskey.github.io/OptDC_01_Pluggables_to_LPO/">Pluggable Transceivers to Linear-Drive Optics &rarr;</a><div class="desc">What is inside a pluggable optical module and where its power goes: form factors and MSAs, the Ethernet optical interfaces from 400G to 1.6T, host electrical lanes, the retiming DSP, and what linear-drive (LPO) and linear-receive (LRO) modules save by removing it and what they give up.</div><div class="meta"><span class="badge live">live</span><span>QSFP-DD / OSFP &middot; IEEE 802.3 &middot; DSP retimer &middot; LPO</span></div></div></li>
+<li class="deck-card"><div class="num"></div><div class="body"><a class="deck-title" href="https://brendanjameslynskey.github.io/OptDC_02_Co_Packaged_Optics/">Co-Packaged Optics and Optical I/O &rarr;</a><div class="desc">Moving the optics from the faceplate onto the switch or processor package: why the electrical channel is the problem, optical engines and external lasers, the OIF agreements, what vendors have announced and claim, serviceability, heat and fibre, and optical I/O chiplets for compute.</div><div class="meta"><span class="badge live">live</span><span>CPO &middot; Optical engine &middot; ELSFP &middot; XSR</span></div></div></li>
+<li class="deck-card"><div class="num"></div><div class="body"><a class="deck-title" href="https://brendanjameslynskey.github.io/OptDC_03_Optical_Circuit_Switching/">Optical Circuit Switching &rarr;</a><div class="desc">Switching light without converting it: packet against circuit switching, MEMS, piezo, liquid-crystal, silicon-photonic and wavelength-routed switches, Google's optical spine and TPU v4 interconnect, reconfiguration time against traffic, and what an optical switch costs in the link budget.</div><div class="meta"><span class="badge live">live</span><span>OCS &middot; 3D MEMS &middot; Topology engineering &middot; TPU v4</span></div></div></li>
+<li class="deck-card"><div class="num"></div><div class="body"><a class="deck-title" href="https://brendanjameslynskey.github.io/OptDC_04_AI_Cluster_Networks/">Optical Networks for AI Clusters &rarr;</a><div class="desc">The networks that join accelerators: scale-up domains and scale-out fabrics, the traffic collectives create, fat-trees, rail-optimised and rail-only designs, tori with optical switches, copper against optics, how many transceivers a cluster needs and what they draw, and how links fail.</div><div class="meta"><span class="badge live">live</span><span>Scale-up &middot; Scale-out &middot; Fat-tree &middot; Rail-optimised</span></div></div></li>
+    </ol>
+    <div class="callout">
+        <p><strong>How to read this series.</strong> Deck 01 is the module at the faceplate and where its watts go, and what linear drive saves. Deck 02 moves the optics onto the switch package. Deck 03 switches light itself, as Google does in its spine and TPU interconnect. Deck 04 puts them together in the networks of AI clusters, with a calculator for how many transceivers a cluster needs. Each deck has one interactive.</p>
+    </div>
+    <div class="callout">
+        <p><strong>Where the numbers come from.</strong> This is mostly a literature series. Every number is cited on its slide to a paper, a standard (IEEE 802.3, OIF, ITU-T), an MSA or a datasheet, with a link, or computed live by a deck's interactive. Much of what is public about data-centre optics comes from vendors: their press releases and datasheets are cited and <em>labelled as vendor claims</em>, and the interactives' coefficients are labelled as illustrative where no source fixes them. Standards in progress (IEEE P802.3dj) are called drafts.</p>
+    </div>
+    <div class="callout">
+        <p><strong>Built on Silicon Photonics Fundamentals.</strong> Modulators, photodiodes, lasers, WDM, packaging and the link budget are explained in <a style="color: var(--accent);" href="https://brendanjameslynskey.github.io/Optical_Hub_Silicon_Photonics/">Silicon Photonics Fundamentals</a>; concept chips and glossary entries link to its <a style="color: var(--accent);" href="https://brendanjameslynskey.github.io/Optical_Hub_Silicon_Photonics/#glossary">glossary</a>. The traffic these networks carry is worked through in <a style="color: var(--accent);" href="https://brendanjameslynskey.github.io/LLM_Hub_Compute_in_Transit/">Compute in Transit</a>.</p>
+    </div>
+
+    <h2 id="glossary">Glossary: Concepts and Where They Are Explained</h2>
+    <p class="gloss-intro">Every data-centre concept the decks rely on, with a short explanation and links to the slides that explain it. Device concepts are linked to the <a href="https://brendanjameslynskey.github.io/Optical_Hub_Silicon_Photonics/#glossary">Silicon Photonics Fundamentals glossary</a>, and the traffic of training and inference to <a href="https://brendanjameslynskey.github.io/LLM_Hub_Compute_in_Transit/#glossary">Compute in Transit</a>, rather than repeated.</p>
+    <h3>Pluggable optics</h3>
+    <dl class="gloss">
+        <dt id="g-pluggable">Pluggable transceiver and MSA</dt>
+        <dd>A self-contained optical link end that slides into a faceplate cage: electrical lanes on one side, fibre on the other. A multi-source agreement fixes the cage, connector, management interface and power envelope, so switches and optics come from different suppliers and failed modules are swapped per port.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_01_Pluggables_to_LPO/#slide-01">OptDC 01 &middot; what a pluggable module is</a></span></dd>
+        <dt id="g-formfactor">QSFP-DD and OSFP</dt>
+        <dd>The two eight-lane form factors of 400G and 800G pluggables. QSFP-DD's power rating rose from 20 W (2019) to 25 W (2021); OSFP has an integrated heat sink for up to 15 W with conventional airflow; OSFP-XD doubles the lanes to 16.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_01_Pluggables_to_LPO/#slide-01">OptDC 01 &middot; what a pluggable module is</a> &middot; <a href="https://brendanjameslynskey.github.io/OptDC_01_Pluggables_to_LPO/#slide-11">OptDC 01 &middot; faceplates, heat and the switch</a></span></dd>
+        <dt id="g-dsp">Retiming DSP</dt>
+        <dd>The digital signal processor in a module that recovers clock and data from the lossy host trace and re-times them for the optics, and the reverse on receive. It splits one hard link into two separately specified ones, at a cost of several watts per module.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_01_Pluggables_to_LPO/#slide-02">OptDC 01 &middot; inside a DSP-retimed module</a> &middot; <a href="https://brendanjameslynskey.github.io/OptDC_01_Pluggables_to_LPO/#slide-05">OptDC 01 &middot; where a module's power goes</a></span></dd>
+        <dt id="g-pmd">Ethernet optical interfaces: SR, DR, FR, LR</dt>
+        <dd>The IEEE 802.3 and MSA optical interfaces. SR: multimode VCSELs, about 100 m. DR: one wavelength per single-mode fibre pair, 500 m. FR and LR: four or eight wavelengths on a duplex fibre, 2 and 10 km. 200 Gb/s-per-lane versions are in the IEEE P802.3dj draft.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_01_Pluggables_to_LPO/#slide-03">OptDC 01 &middot; the optical interfaces</a> &middot; <a href="https://brendanjameslynskey.github.io/OptDC_01_Pluggables_to_LPO/#slide-10">OptDC 01 &middot; the reach ladder</a></span></dd>
+        <dt id="g-vsr">Host electrical interface (VSR)</dt>
+        <dd>The channel from a switch's SerDes to a pluggable module: package, board trace and connector. OIF's CEI-112G-VSR allows up to 16 dB of loss at the Nyquist frequency, including one connector, at 100 Gb/s per lane.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_01_Pluggables_to_LPO/#slide-04">OptDC 01 &middot; the host electrical interface</a> &middot; <a href="https://brendanjameslynskey.github.io/OptDC_02_Co_Packaged_Optics/#slide-01">OptDC 02 &middot; why move the optics into the package</a></span></dd>
+        <dt id="g-modpower">Module power</dt>
+        <dd>What a pluggable draws: an 800G datasheet gives 17 W maximum; DSP vendors claim 800G modules below 11&ndash;12 W. At 800 Gb/s, 11&ndash;17 W is about 14&ndash;21 pJ/bit, most of it DSP, drivers, TIAs and lasers.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_01_Pluggables_to_LPO/#slide-05">OptDC 01 &middot; where a module's power goes</a> &middot; <a href="https://brendanjameslynskey.github.io/OptDC_01_Pluggables_to_LPO/#slide-08">OptDC 01 &middot; interactive module power</a> &middot; <a href="https://brendanjameslynskey.github.io/OptDC_04_AI_Cluster_Networks/#slide-06">OptDC 04 &middot; interactive transceiver count</a></span></dd>
+        <dt id="g-lpo">Linear-drive pluggable optics (LPO)</dt>
+        <dd>A pluggable with no DSP: linear drivers and TIAs pass the waveform through, and the switch's SerDes equalises the whole link. Vendors claim roughly half the module power; the LPO MSA (formed 2024) released its first specification, for 100 Gb/s-per-lane single-mode modules, in 2025.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_01_Pluggables_to_LPO/#slide-06">OptDC 01 &middot; linear-drive pluggable optics</a> &middot; <a href="https://brendanjameslynskey.github.io/OptDC_01_Pluggables_to_LPO/#slide-08">OptDC 01 &middot; interactive module power</a> &middot; <a href="https://brendanjameslynskey.github.io/OptDC_01_Pluggables_to_LPO/#slide-09">OptDC 01 &middot; what linear drive gives up</a></span></dd>
+        <dt id="g-lro">Linear receive optics (LRO)</dt>
+        <dd>A half-way module: retimed transmit, linear receive. The launched optical signal stays standard and interoperable while the receive side goes linear; described by one vendor as saving roughly half as much as LPO.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_01_Pluggables_to_LPO/#slide-07">OptDC 01 &middot; linear receive</a></span></dd>
+        <dt id="g-copperreach">Copper reach</dt>
+        <dd>How far passive twin-axial copper carries a lane: at least 2 m at 100 Gb/s per lane (IEEE 802.3ck) and an objective of at least 1 m at 200 Gb/s (P802.3dj). It roughly halves with each lane-rate doubling, which pushes optics towards the chip.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_01_Pluggables_to_LPO/#slide-10">OptDC 01 &middot; the reach ladder</a> &middot; <a href="https://brendanjameslynskey.github.io/OptDC_04_AI_Cluster_Networks/#slide-08">OptDC 04 &middot; copper against optics</a></span></dd>
+        <dt id="g-radix">Switch capacity and radix</dt>
+        <dd>A switch chip's total bandwidth and its number of ports: 51.2 Tb/s is 64 &times; 800G, 102.4 Tb/s is 128 &times; 800G or 64 &times; 1.6T. Radix sets how many endpoints each tier of a fat-tree can join.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_01_Pluggables_to_LPO/#slide-11">OptDC 01 &middot; faceplates, heat and the switch</a> &middot; <a href="https://brendanjameslynskey.github.io/OptDC_04_AI_Cluster_Networks/#slide-05">OptDC 04 &middot; fat-trees, rails and rail-only</a> &middot; <a href="https://brendanjameslynskey.github.io/OptDC_04_AI_Cluster_Networks/#slide-06">OptDC 04 &middot; interactive transceiver count</a></span></dd>
+    </dl>
+    <h3>Co-packaged optics</h3>
+    <dl class="gloss">
+        <dt id="g-cpo">Co-packaged optics (CPO)</dt>
+        <dd>Optical engines on the switch or processor package substrate, millimetres from the die, instead of pluggable modules at the faceplate. It removes the host trace and the module DSP; switch vendors claim 50&ndash;70% lower optical interconnect power, at the cost of field replacement of optics.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_02_Co_Packaged_Optics/#slide-01">OptDC 02 &middot; why move the optics into the package</a> &middot; <a href="https://brendanjameslynskey.github.io/OptDC_02_Co_Packaged_Optics/#slide-02">OptDC 02 &middot; anatomy of a co-packaged switch</a> &middot; <a href="https://brendanjameslynskey.github.io/OptDC_02_Co_Packaged_Optics/#slide-04">OptDC 02 &middot; what vendors have announced</a></span></dd>
+        <dt id="g-engine">Optical engine</dt>
+        <dd>The silicon photonic chip, with its drivers and TIAs, that converts a group of electrical lanes to light on the package: for example 6.4 Tb/s per engine, eight around a 51.2 Tb/s switch.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_02_Co_Packaged_Optics/#slide-02">OptDC 02 &middot; anatomy of a co-packaged switch</a></span></dd>
+        <dt id="g-xsr">XSR and XSR+ electrical lanes</dt>
+        <dd>OIF's extra-short-reach lanes from a die to another die or to an optical engine: CEI-112G-XSR reaches up to 50 mm; XSR+ allows up to 13 dB bump to bump, for multi-chip modules, CPO and near-packaged optics.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_02_Co_Packaged_Optics/#slide-01">OptDC 02 &middot; why move the optics into the package</a> &middot; <a href="https://brendanjameslynskey.github.io/OptDC_02_Co_Packaged_Optics/#slide-03">OptDC 02 &middot; the OIF agreements</a> &middot; <a href="https://brendanjameslynskey.github.io/OptDC_02_Co_Packaged_Optics/#slide-05">OptDC 02 &middot; interactive energy along the path</a></span></dd>
+        <dt id="g-oifcpo">OIF co-packaging agreements</dt>
+        <dd>The Co-Packaging Framework (2022), the 3.2 Tb/s co-packaged module (2023: 8 &times; 400G FR4 or DR4 optics behind 32 XSR lanes), the external laser module ELSFP (2023, revised 2025) and the XSR+ lane (2024).<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_02_Co_Packaged_Optics/#slide-03">OptDC 02 &middot; the OIF agreements</a></span></dd>
+        <dt id="g-opticalio">Optical I/O chiplet</dt>
+        <dd>An optical engine inside a processor package, for scale-up and memory traffic, typically with many wavelengths at modest rates per wavelength: Intel's prototype runs 64 lanes at 32 Gb/s on 8 wavelengths per fibre; vendors claim about 5 pJ/bit.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_02_Co_Packaged_Optics/#slide-06">OptDC 02 &middot; optical I/O for compute</a> &middot; <a href="https://brendanjameslynskey.github.io/OptDC_04_AI_Cluster_Networks/#slide-03">OptDC 04 &middot; scale-up domains</a></span></dd>
+        <dt id="g-npo">Near-packaged optics</dt>
+        <dd>Optical engines on the board next to the package rather than on it: a shorter electrical channel than pluggables, with some separation of optics and switch. One step on the path from faceplate to die.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_02_Co_Packaged_Optics/#slide-10">OptDC 02 &middot; near-packaged optics</a></span></dd>
+        <dt id="g-serviceability">Serviceability of co-packaged optics</dt>
+        <dd>What CPO gives up and how designs recover it: lasers kept in front-panel pluggable modules, known-good engines before assembly, spare lanes, and detachable fibre connectors.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_02_Co_Packaged_Optics/#slide-07">OptDC 02 &middot; serviceability and reliability</a> &middot; <a href="https://brendanjameslynskey.github.io/OptDC_02_Co_Packaged_Optics/#slide-09">OptDC 02 &middot; fibre at scale</a></span></dd>
+        <dt id="g-fibrecount">Fibre count</dt>
+        <dd>Data fibres needed for a given bandwidth: lanes &divide; wavelengths per fibre, doubled for two directions. 51.2 Tb/s of 100G lanes needs 1,024 fibres with one lane per fibre, 256 with four wavelengths per fibre, plus laser feeds.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_02_Co_Packaged_Optics/#slide-09">OptDC 02 &middot; fibre at scale</a></span></dd>
+    </dl>
+    <h3>Optical circuit switching</h3>
+    <dl class="gloss">
+        <dt id="g-ocs">Optical circuit switch (OCS)</dt>
+        <dd>A switch that steers light from input to output fibres without detecting it: no transceivers inside, under 1 W per port for Google's Palomar, and agnostic to line rate. It sets circuits, not packets, and reconfigures in nanoseconds to milliseconds depending on technology.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_03_Optical_Circuit_Switching/#slide-01">OptDC 03 &middot; packet and circuit switching</a> &middot; <a href="https://brendanjameslynskey.github.io/OptDC_03_Optical_Circuit_Switching/#slide-02">OptDC 03 &middot; how a MEMS OCS works</a> &middot; <a href="https://brendanjameslynskey.github.io/OptDC_03_Optical_Circuit_Switching/#slide-03">OptDC 03 &middot; the technologies compared</a></span></dd>
+        <dt id="g-mems">3D MEMS optical switch</dt>
+        <dd>Two arrays of two-axis micro-mirrors that aim each input beam at any output fibre. Hundreds of ports at under 2 dB typical loss, switching in milliseconds: Google's Palomar is 136 &times; 136.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_03_Optical_Circuit_Switching/#slide-02">OptDC 03 &middot; how a MEMS OCS works</a> &middot; <a href="https://brendanjameslynskey.github.io/OptDC_03_Optical_Circuit_Switching/#slide-03">OptDC 03 &middot; the technologies compared</a></span></dd>
+        <dt id="g-reconfig">Reconfiguration time and duty cycle</dt>
+        <dd>How long a circuit switch takes to change its connections, against how long a configuration is used: the fabric carries traffic for 1 &minus; t<sub>reconfigure</sub>/t<sub>period</sub> of the time. Milliseconds suit per-job topologies; per-packet switching needs nanoseconds.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_03_Optical_Circuit_Switching/#slide-07">OptDC 03 &middot; interactive reconfiguration</a> &middot; <a href="https://brendanjameslynskey.github.io/OptDC_03_Optical_Circuit_Switching/#slide-08">OptDC 03 &middot; reconfiguration time against traffic</a></span></dd>
+        <dt id="g-topoeng">Direct connect and topology engineering</dt>
+        <dd>Wiring aggregation blocks to each other through an OCS layer instead of through a packet spine, and choosing that wiring to match the traffic matrix. Google reports 30% lower capital cost and 41% lower power for its Jupiter fabric.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_03_Optical_Circuit_Switching/#slide-04">OptDC 03 &middot; Google's optical spine</a></span></dd>
+        <dt id="g-circulator">Optical circulator</dt>
+        <dd>A non-reciprocal device that lets one fibre carry both directions of a link, halving OCS ports and fibres; it makes the switch's return loss matter, since reflections reach the same port's receiver.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_03_Optical_Circuit_Switching/#slide-05">OptDC 03 &middot; lightwave fabrics</a></span></dd>
+        <dt id="g-tpuv4">Optically reconfigurable torus (TPU v4)</dt>
+        <dd>4,096 TPU v4 chips in 64-chip cubes joined through 3D MEMS OCSes into tori of the shape each job asks for, routing around failed racks; the OCSes are under 5% of system cost and 3% of power.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_03_Optical_Circuit_Switching/#slide-06">OptDC 03 &middot; TPU v4</a> &middot; <a href="https://brendanjameslynskey.github.io/OptDC_04_AI_Cluster_Networks/#slide-07">OptDC 04 &middot; tori and optical switches</a></span></dd>
+        <dt id="g-fastocs">Fast optical switching (RotorNet, Sirius)</dt>
+        <dd>Research designs that switch light far faster than MEMS: RotorNet cycles rotor switches through fixed matchings with no central scheduler; Sirius uses tunable lasers and passive gratings to reconfigure end to end in 3.84 ns.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_03_Optical_Circuit_Switching/#slide-08">OptDC 03 &middot; reconfiguration time against traffic</a> &middot; <a href="https://brendanjameslynskey.github.io/OptDC_03_Optical_Circuit_Switching/#slide-03">OptDC 03 &middot; the technologies compared</a></span></dd>
+        <dt id="g-ocsloss">OCS insertion loss in the link budget</dt>
+        <dd>The loss every link pays to cross an optical switch: typically under 2 dB for MEMS switches, several dB for integrated silicon switches. With no regeneration inside, it comes straight out of the transceivers' margin.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_03_Optical_Circuit_Switching/#slide-09">OptDC 03 &middot; an optical switch in the link budget</a> &middot; <a href="https://brendanjameslynskey.github.io/OptDC_03_Optical_Circuit_Switching/#slide-07">OptDC 03 &middot; interactive reconfiguration</a></span></dd>
+    </dl>
+    <h3>AI cluster networks</h3>
+    <dl class="gloss">
+        <dt id="g-scaleup">Scale-up domain</dt>
+        <dd>Accelerators joined by a very high-bandwidth, low-latency fabric with memory semantics: NVLink (NVL72: 72 GPUs, 130 TB/s), UALink (up to 1,024 accelerators at 200 Gb/s per lane), Google's ICI. Mostly copper inside a rack today.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_04_AI_Cluster_Networks/#slide-01">OptDC 04 &middot; scale-up, scale-out and scale-across</a> &middot; <a href="https://brendanjameslynskey.github.io/OptDC_04_AI_Cluster_Networks/#slide-03">OptDC 04 &middot; scale-up domains</a></span></dd>
+        <dt id="g-scaleout">Scale-out fabric</dt>
+        <dd>The NIC-based network joining thousands to hundreds of thousands of accelerators: InfiniBand or Ethernet (RoCE, Ultra Ethernet), built as a non-blocking fat-tree, mostly optical.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_04_AI_Cluster_Networks/#slide-01">OptDC 04 &middot; scale-up, scale-out and scale-across</a> &middot; <a href="https://brendanjameslynskey.github.io/OptDC_04_AI_Cluster_Networks/#slide-04">OptDC 04 &middot; scale-out fabrics in practice</a></span></dd>
+        <dt id="g-fattree">Fat-tree (folded Clos)</dt>
+        <dd>A non-blocking network of identical switches in tiers; with k-port switches, three tiers join up to k<sup>3</sup>/4 endpoints (65,536 at radix 64). Every tier boundary carries one link per endpoint, so a t-tier tree needs 2&middot;E&middot;t transceivers if all links are optical.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_04_AI_Cluster_Networks/#slide-05">OptDC 04 &middot; fat-trees, rails and rail-only</a> &middot; <a href="https://brendanjameslynskey.github.io/OptDC_04_AI_Cluster_Networks/#slide-06">OptDC 04 &middot; interactive transceiver count</a></span></dd>
+        <dt id="g-rail">Rail-optimised and rail-only networks</dt>
+        <dd>Rail-optimised: GPU i of every server connects to rail switch i, so same-numbered GPUs are one hop apart. Rail-only removes the spine and forwards the little cross-rail traffic through the scale-up domain, reporting 38&ndash;77% lower network cost and 37&ndash;75% lower power.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_04_AI_Cluster_Networks/#slide-05">OptDC 04 &middot; fat-trees, rails and rail-only</a> &middot; <a href="https://brendanjameslynskey.github.io/OptDC_04_AI_Cluster_Networks/#slide-09">OptDC 04 &middot; pluggable, linear or co-packaged</a></span></dd>
+        <dt id="g-torus">Torus interconnect</dt>
+        <dd>Accelerators linked directly to their neighbours in two or three dimensions with no switches between: cheap per chip and good for ring and neighbour patterns, poorer for all-to-all and sensitive to failed nodes unless optical switches reroute.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_04_AI_Cluster_Networks/#slide-07">OptDC 04 &middot; tori and optical switches</a></span></dd>
+        <dt id="g-xcvrcount">Transceiver count of a cluster</dt>
+        <dd>Two per optical link: 2 &times; endpoints &times; tiers for a non-blocking fat-tree, about 98,000 for 16,384 accelerators in three tiers. Topology (rail-only, OCS, copper) sets the count; module type (DSP, LPO, CPO) sets the watts each.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_04_AI_Cluster_Networks/#slide-06">OptDC 04 &middot; interactive transceiver count</a> &middot; <a href="https://brendanjameslynskey.github.io/OptDC_04_AI_Cluster_Networks/#slide-09">OptDC 04 &middot; pluggable, linear or co-packaged</a></span></dd>
+        <dt id="g-linkfail">Link failures in training</dt>
+        <dd>A synchronous training job stops when any participant's link fails. In Llama 3's 54-day snapshot on 16,384 GPUs, 35 of 419 unexpected interruptions (8.4%) were network switches or cables; at a trade-press 200 FIT per transceiver, 100,000 transceivers fail about once every two days.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_04_AI_Cluster_Networks/#slide-10">OptDC 04 &middot; how links fail</a> &middot; <a href="https://brendanjameslynskey.github.io/OptDC_02_Co_Packaged_Optics/#slide-07">OptDC 02 &middot; serviceability and reliability</a></span></dd>
+        <dt id="g-ethernetai">RoCE and Ultra Ethernet</dt>
+        <dd>Ethernet for AI fabrics: RDMA over Converged Ethernet carries GPU-to-GPU transfers on Ethernet switches (Meta's 24,576-GPU cluster); the Ultra Ethernet Consortium's 1.0 specification (2025) defines a new transport and congestion control for AI and HPC.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_04_AI_Cluster_Networks/#slide-04">OptDC 04 &middot; scale-out fabrics in practice</a></span></dd>
+        <dt id="g-scaleacross">Scale-across</dt>
+        <dd>Training one model across several data centres over long-haul coherent links, with algorithms that synchronise rarely (DiLoCo: 500 times less communication on its benchmark).<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/OptDC_04_AI_Cluster_Networks/#slide-01">OptDC 04 &middot; scale-up, scale-out and scale-across</a> &middot; <a href="https://brendanjameslynskey.github.io/OptDC_04_AI_Cluster_Networks/#slide-11">OptDC 04 &middot; scale-across</a></span></dd>
+    </dl>
+    <h3>Explained in the sister series</h3>
+    <p class="gloss-intro"><a href="https://brendanjameslynskey.github.io/Optical_Hub_Silicon_Photonics/#g-pam4">NRZ and PAM4</a> &middot; <a href="https://brendanjameslynskey.github.io/Optical_Hub_Silicon_Photonics/#g-mzm">Mach–Zehnder modulator (MZM)</a> &middot; <a href="https://brendanjameslynskey.github.io/Optical_Hub_Silicon_Photonics/#g-tia">Transimpedance amplifier and receiver sensitivity</a> &middot; <a href="https://brendanjameslynskey.github.io/Optical_Hub_Silicon_Photonics/#g-grids">CWDM, LAN-WDM and DWDM grids</a> &middot; <a href="https://brendanjameslynskey.github.io/Optical_Hub_Silicon_Photonics/#g-wdm">Wavelength-division multiplexing (WDM)</a> &middot; <a href="https://brendanjameslynskey.github.io/Optical_Hub_Silicon_Photonics/#g-elsfp">External laser source and ELSFP</a> &middot; <a href="https://brendanjameslynskey.github.io/Optical_Hub_Silicon_Photonics/#g-eic">Electronic–photonic integration</a> &middot; <a href="https://brendanjameslynskey.github.io/Optical_Hub_Silicon_Photonics/#g-packaging">Fibre attach and photonic packaging</a> &middot; <a href="https://brendanjameslynskey.github.io/Optical_Hub_Silicon_Photonics/#g-tuning">Thermal tuning and wavelength locking</a> &middot; <a href="https://brendanjameslynskey.github.io/Optical_Hub_Silicon_Photonics/#g-thermo">Thermo-optic effect</a> &middot; <a href="https://brendanjameslynskey.github.io/Optical_Hub_Silicon_Photonics/#g-comb">Multi-wavelength sources and combs</a> &middot; <a href="https://brendanjameslynskey.github.io/Optical_Hub_Silicon_Photonics/#g-wpe">Wall-plug efficiency</a> &middot; <a href="https://brendanjameslynskey.github.io/Optical_Hub_Silicon_Photonics/#g-pjbit">Energy per bit</a> &middot; <a href="https://brendanjameslynskey.github.io/Optical_Hub_Silicon_Photonics/#g-linkbudget">Optical link budget</a> &middot; <a href="https://brendanjameslynskey.github.io/Optical_Hub_Silicon_Photonics/#g-coherent">Direct and coherent detection</a> &middot; <a href="https://brendanjameslynskey.github.io/Optical_Hub_Silicon_Photonics/#g-scaling">Bandwidth scaling: lanes, wavelengths and symbol rate</a> &middot; <a href="https://brendanjameslynskey.github.io/Optical_Hub_Silicon_Photonics/#g-dark">Dark current, capacitance and bandwidth</a> &middot; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Compute_in_Transit/#g-module">Photonic link module</a> &middot; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Compute_in_Transit/#g-ringallreduce">Ring all-reduce</a> &middot; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Compute_in_Transit/#g-alltoall">MoE all-to-all</a> &middot; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Compute_in_Transit/#g-paralleltraffic">The traffic of each kind of parallelism</a> &middot; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Compute_in_Transit/#g-diloco">Low-communication training (DiLoCo family)</a> &middot; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Compute_in_Transit/#g-demo">DeMo (decoupled momentum)</a> &middot; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Fourier_Optics_Training/#g-crossdc">Cross-data-centre training and break-even bandwidth</a>.</p>
+</main>
+
+<footer class="footer">
+    <p>Part of the <a href="https://brendanjameslynskey.github.io/Hardware/">Hardware index</a>, under <em>Optical Technology</em>.</p>
+    <p style="margin-top: 0.5rem;">Sister series: <a href="https://brendanjameslynskey.github.io/Optical_Hub_Silicon_Photonics/">Silicon Photonics Fundamentals</a> (the device physics) &middot; <a href="https://github.com/BrendanJamesLynskey/Optical_Hub_AI_Processing">Optical Technology for AI Processing</a> (planned) &middot; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Compute_in_Transit/">Compute in Transit</a> &middot; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Fourier_Optics_Training/">Fourier Optics for Training</a> &middot; <a href="https://brendanjameslynskey.github.io/LLM_Hub_Inference_Simulators/">LLM Inference Simulators</a>.</p>
+</footer>
+
+</body>
+</html>
