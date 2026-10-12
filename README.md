@@ -70,7 +70,7 @@ Explained in the sister series: [NRZ and PAM4](https://brendanjameslynskey.githu
 
 ## Where this fits
 
-Part of the [Hardware index](https://github.com/BrendanJamesLynskey/Hardware), under *Optical Technology*. **Sister series:** [Silicon Photonics Fundamentals](https://github.com/BrendanJamesLynskey/Optical_Hub_Silicon_Photonics) (the device physics this series builds on), [Optical Technology for AI Processing](https://github.com/BrendanJamesLynskey/Optical_Hub_AI_Processing) (planned), [Compute in Transit](https://github.com/BrendanJamesLynskey/LLM_Hub_Compute_in_Transit), [Fourier Optics for Training](https://github.com/BrendanJamesLynskey/LLM_Hub_Fourier_Optics_Training) and [LLM Inference Simulators](https://github.com/BrendanJamesLynskey/LLM_Hub_Inference_Simulators).
+Part of the [Hardware index](https://github.com/BrendanJamesLynskey/Hardware), under *Optical Technology*. **Sister series:** [Silicon Photonics Fundamentals](https://github.com/BrendanJamesLynskey/Optical_Hub_Silicon_Photonics) (the device physics this series builds on), [Optical Technology for AI Processing](https://github.com/BrendanJamesLynskey/Optical_Hub_AI_Processing), [Compute in Transit](https://github.com/BrendanJamesLynskey/LLM_Hub_Compute_in_Transit), [Fourier Optics for Training](https://github.com/BrendanJamesLynskey/LLM_Hub_Fourier_Optics_Training) and [LLM Inference Simulators](https://github.com/BrendanJamesLynskey/LLM_Hub_Inference_Simulators).
 
 ## Licence
 
