@@ -1,3 +1,7 @@
+<!-- portfolio-strip:start (brief 40) -->
+<sub>**Brendan Lynskey** · [Portfolio home](https://brendanjameslynskey.github.io/) · [Interactive sites](https://brendanjameslynskey.github.io/#sites)</sub>
+<!-- portfolio-strip:end -->
+
 # Optical Technology for Data Centres
 
 How light carries data-centre and AI-cluster traffic, and what it costs: pluggable modules and the linear-drive optics that remove their DSPs, co-packaged optics on the switch package, optical circuit switches that replace packet spines, and the scale-up and scale-out networks of AI clusters. Device physics comes from [Silicon Photonics Fundamentals](https://github.com/BrendanJamesLynskey/Optical_Hub_Silicon_Photonics) and is linked, not repeated.
